@@ -1,38 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Silkscreen:wght@400;700&display=swap');
 
 :root {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-glass: rgba(30, 41, 59, 0.6);
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent-1: #3b82f6;
-  --accent-2: #8b5cf6;
-  --accent-3: #10b981;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.05);
+  /* Minecraft UI Colors */
+  --mc-bg: #2b2b2b;          /* Dark stone / deepslate */
+  --mc-ui-bg: #c6c6c6;       /* Classic UI Grey */
+  --mc-ui-dark: #373737;     /* UI Shadow */
+  --mc-ui-light: #ffffff;    /* UI Highlight */
+  
+  --mc-text-dark: #3f3f3f;
+  --mc-text-light: #ffffff;
+  --mc-text-accent: #ffff55; /* Yellow text */
+  --mc-accent-blue: #55ffff; /* Aqua text */
+  --mc-accent-green: #55ff55;
+  
+  --mc-btn-bg: #8b8b8b;
+  --mc-btn-hover: #7b7b7b;
+  
+  /* Block colors */
+  --block-dirt: #866043;
+  --block-grass: #5b8731;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* Pixelated rendering for images and borders */
+  image-rendering: pixelated;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
+  font-family: 'VT323', monospace;
+  background-color: var(--mc-bg);
+  color: var(--mc-text-light);
+  line-height: 1.4;
+  font-size: 22px;
+  /* Stone-like background pattern */
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
-  background-attachment: fixed;
+    linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #2a2a2a 75%, #2a2a2a), 
+    linear-gradient(45deg, #2a2a2a 25%, transparent 25%, transparent 75%, #2a2a2a 75%, #2a2a2a);
+  background-size: 64px 64px;
+  background-position: 0 0, 32px 32px;
+  overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
+h1, h2, h3, h4, h5, h6, .logo {
+  font-family: 'Silkscreen', cursive;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 4px 4px 0px var(--mc-ui-dark);
 }
 
 a {
@@ -42,30 +58,25 @@ a {
 
 /* Utilities */
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 .gradient-text {
-  background: linear-gradient(to right, var(--accent-1), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--mc-accent-blue);
+  text-shadow: 4px 4px 0px var(--mc-ui-dark);
 }
 
 /* Header */
 header {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: var(--glass-border);
-  background: rgba(15, 23, 42, 0.8);
-  transition: all 0.3s ease;
+  background-color: var(--mc-bg);
+  border-bottom: 4px solid var(--mc-ui-dark);
 }
 
 nav {
@@ -75,9 +86,8 @@ nav {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-size: 1.8rem;
+  color: var(--mc-text-accent);
 }
 
 .nav-links {
@@ -87,14 +97,15 @@ nav {
 }
 
 .nav-links a {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+  font-size: 1.4rem;
+  color: var(--mc-text-light);
+  text-transform: uppercase;
+  transition: color 0.1s;
 }
 
 .nav-links a:hover {
-  color: var(--text-primary);
+  color: var(--mc-accent-green);
+  text-shadow: 2px 2px 0px var(--mc-ui-dark);
 }
 
 /* Hero Section */
@@ -102,71 +113,74 @@ nav {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 5rem;
+  padding-top: 6rem;
+  position: relative;
 }
 
 .hero-content {
   max-width: 800px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border: 4px solid var(--mc-ui-dark);
+  box-shadow: inset 4px 4px 0 rgba(255, 255, 255, 0.2);
 }
 
 .hero-tag {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 50px;
-  color: var(--accent-1);
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+  background: var(--mc-accent-green);
+  color: var(--mc-bg);
+  padding: 0.2rem 0.5rem;
+  font-family: 'Silkscreen', cursive;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 4px 4px 0 var(--mc-ui-dark);
 }
 
 .hero h1 {
-  font-size: 4rem;
-  line-height: 1.1;
+  font-size: 3.5rem;
+  line-height: 1.2;
   margin-bottom: 1.5rem;
-  letter-spacing: -1px;
+  color: var(--mc-text-light);
 }
 
 .hero p {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  margin-bottom: 2.5rem;
-  max-width: 600px;
+  font-size: 1.5rem;
+  color: #dddddd;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 0px #000;
 }
 
+/* Minecraft Button */
 .btn {
   display: inline-flex;
   align-items: center;
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
+  font-family: 'Silkscreen', cursive;
+  font-size: 1rem;
+  color: var(--mc-text-light);
+  background-color: var(--mc-btn-bg);
+  border: 4px solid;
+  border-color: var(--mc-ui-light) var(--mc-ui-dark) var(--mc-ui-dark) var(--mc-ui-light);
   cursor: pointer;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0px var(--mc-ui-dark);
+  transition: all 0.1s;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-  color: white;
-  border: none;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+.btn:hover {
+  background-color: var(--mc-accent-blue);
+  color: #fff;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+.btn:active {
+  border-color: var(--mc-ui-dark) var(--mc-ui-light) var(--mc-ui-light) var(--mc-ui-dark);
+  padding: 0.9rem 1.4rem 0.7rem 1.6rem; /* Simulate press down */
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  background-color: var(--mc-ui-dark);
   margin-left: 1rem;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Skills Section */
@@ -178,6 +192,7 @@ nav {
   font-size: 2.5rem;
   margin-bottom: 3rem;
   text-align: center;
+  color: var(--mc-text-accent);
 }
 
 .skills-grid {
@@ -187,30 +202,26 @@ nav {
 }
 
 .skill-card {
-  background: var(--bg-glass);
-  border: var(--glass-border);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 16px;
+  background-color: var(--mc-ui-bg);
+  color: var(--mc-text-dark);
+  border: 4px solid;
+  border-color: var(--mc-ui-light) var(--mc-ui-dark) var(--mc-ui-dark) var(--mc-ui-light);
+  padding: 2rem 1rem;
   text-align: center;
-  transition: all 0.3s ease;
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(30, 41, 59, 0.8);
+  box-shadow: inset -4px -4px 0px rgba(0,0,0,0.1);
 }
 
 .skill-icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
-  color: var(--accent-1);
+  color: var(--mc-ui-dark);
+  text-shadow: none;
 }
 
 .skill-name {
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-family: 'Silkscreen', cursive;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 /* Projects Section */
@@ -224,41 +235,54 @@ nav {
   gap: 2rem;
 }
 
+/* Minecraft Grass Block style for Cards */
 .project-card {
-  background: var(--bg-glass);
-  border: var(--glass-border);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  background-color: var(--block-dirt);
+  border: 4px solid #3c2918;
+  position: relative;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.5);
+  transition: transform 0.1s;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: var(--block-grass);
+  border-bottom: 4px solid #3b571e;
+  z-index: 2;
+}
+
+.project-card:hover {
+  transform: translateY(-4px) translateX(-4px);
+  box-shadow: 12px 12px 0px rgba(0,0,0,0.6);
 }
 
 .project-image {
   width: 100%;
   height: 220px;
   object-fit: cover;
-  border-bottom: var(--glass-border);
-  transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.05);
-}
-
-.project-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-bottom: 4px solid #3c2918;
+  padding-top: 20px; /* offset for grass */
+  background-color: var(--block-dirt);
 }
 
 .project-content {
-  padding: 2.5rem;
+  padding: 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;
+  background-color: var(--mc-ui-bg); /* Inner inventory styling */
+  border: 4px solid;
+  border-color: var(--mc-ui-dark) var(--mc-ui-light) var(--mc-ui-light) var(--mc-ui-dark);
+  margin: 1rem;
+  color: var(--mc-text-dark);
 }
 
 .project-header {
@@ -267,8 +291,11 @@ nav {
 }
 
 .project-title {
-  font-size: 1.5rem;
+  font-family: 'Silkscreen', cursive;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
+  text-shadow: none;
+  color: #000;
 }
 
 .project-tags {
@@ -279,31 +306,29 @@ nav {
 }
 
 .tag {
-  padding: 0.25rem 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  padding: 0.2rem 0.5rem;
+  background: var(--mc-ui-dark);
+  color: var(--mc-text-light);
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  border: 2px solid var(--mc-ui-light);
+  box-shadow: 2px 2px 0 #000;
 }
 
-/* Modal Overlay */
+/* Modal Overlay (Inventory UI) */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
 }
 
 .modal-overlay.active {
@@ -312,85 +337,70 @@ nav {
 }
 
 .modal-content {
-  background: var(--bg-secondary);
-  border: var(--glass-border);
-  border-radius: 24px;
+  background: var(--mc-ui-bg);
+  border: 6px solid;
+  border-color: var(--mc-ui-light) var(--mc-ui-dark) var(--mc-ui-dark) var(--mc-ui-light);
   width: 90%;
   max-width: 900px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  transform: translateY(50px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 3rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.modal-overlay.active .modal-content {
-  transform: translateY(0);
+  color: var(--mc-text-dark);
+  box-shadow: inset -6px -6px 0px rgba(0,0,0,0.1), 10px 10px 0px rgba(0,0,0,0.7);
 }
 
 .close-btn {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: var(--text-primary);
+  top: 1rem;
+  right: 1rem;
+  background: #ff5555;
+  border: 4px solid;
+  border-color: #ffaaaa #aa0000 #aa0000 #ffaaaa;
+  color: white;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  font-size: 1.2rem;
+  font-family: 'Silkscreen', cursive;
+  font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
-  z-index: 10;
+  text-shadow: 2px 2px 0px #aa0000;
 }
 
-.close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(90deg);
-}
-
-/* Case Study Content Wrapper */
-.modal-body {
-  margin-top: 1rem;
+.close-btn:active {
+  border-color: #aa0000 #ffaaaa #ffaaaa #aa0000;
 }
 
 /* Case Study Specific */
 .case-study {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .case-section {
-  margin-bottom: 1.5rem;
+  background: #8b8b8b;
+  border: 4px solid;
+  border-color: var(--mc-ui-dark) var(--mc-ui-light) var(--mc-ui-light) var(--mc-ui-dark);
+  padding: 1.5rem;
+  color: #000;
 }
 
 .case-section h3 {
-  font-size: 1.25rem;
-  color: var(--text-primary);
+  font-family: 'Silkscreen', cursive;
+  font-size: 1.2rem;
+  color: var(--mc-text-accent);
   margin-bottom: 0.75rem;
+  text-shadow: 2px 2px 0px var(--mc-ui-dark);
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.case-section h3::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-1);
-}
-
 .case-section p, .case-section li {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 1.4rem;
 }
 
 .case-section ul {
@@ -404,10 +414,11 @@ nav {
 }
 
 .case-section ul li::before {
-  content: '→';
+  content: '>';
   position: absolute;
   left: -1.5rem;
-  color: var(--accent-1);
+  color: var(--mc-ui-dark);
+  font-family: 'Silkscreen', cursive;
 }
 
 .dashboard-gallery {
@@ -419,14 +430,8 @@ nav {
 
 .dashboard-img {
   width: 100%;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.dashboard-img:hover {
-  transform: scale(1.02);
+  border: 4px solid var(--mc-ui-dark);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
 }
 
 .project-links {
@@ -439,27 +444,29 @@ nav {
 footer {
   text-align: center;
   padding: 3rem 0;
-  border-top: var(--glass-border);
+  border-top: 4px solid var(--mc-ui-dark);
+  background: var(--mc-bg);
   margin-top: 5rem;
 }
 
 footer p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+  color: var(--mc-text-light);
+  font-size: 1.2rem;
 }
 
-/* Responsive */
+/* Custom Scrollbar for Minecraft feel */
+::-webkit-scrollbar {
+  width: 16px;
+  background: var(--mc-ui-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--mc-ui-bg);
+  border: 2px solid;
+  border-color: var(--mc-ui-light) var(--mc-ui-dark) var(--mc-ui-dark) var(--mc-ui-light);
+}
+
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2.5rem;
-  }
-  
-  .project-content {
-    padding: 1.5rem;
-  }
-  
-  .project-header {
-    flex-direction: column;
-    gap: 1rem;
   }
 }
